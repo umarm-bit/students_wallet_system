@@ -34,8 +34,8 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     "students-wallet-system.onrender.com",
+    ".onrender.com",
 ]
-
 
 # Application definition
 
