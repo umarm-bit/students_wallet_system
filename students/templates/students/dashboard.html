@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | Federal Polytechnic Daura</title>
+   <style>
+:root {
+    --school-maroon: #7A1F2B;
+    --school-maroon-dark: #5E1721;
+    --school-blue: #123B5D;
+    --school-blue-dark: #0D2D46;
+    --school-gold: #C9A227;
+    --school-light: #F5F6F8;
+    --school-white: #FFFFFF;
+    --text-dark: #222222;
+    --text-muted: #6B7280;
+    --success: #198754;
+    --danger: #C0392B;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--school-light);
+    color: var(--text-dark);
+}
+
+/* ================= HEADER ================= */
+
+.navbar {
+    background: var(--school-maroon);
+    color: white;
+    padding: 18px 6%;
+    border-bottom: 4px solid var(--school-gold);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h2 {
+    font-size: 21px;
+}
+
+.navbar p {
+    font-size: 13px;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+
+.logout {
+    color: white;
+    text-decoration: none;
+    background: var(--school-blue);
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.logout:hover {
+    background: var(--school-blue-dark);
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 35px auto;
+}
+
+/* ================= WELCOME ================= */
+
+.welcome {
+    margin-bottom: 25px;
+}
+
+.welcome h1 {
+    color: var(--school-maroon);
+    margin-bottom: 6px;
+}
+
+.welcome p {
+    color: var(--text-muted);
+}
+
+/* ================= CARDS ================= */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    border-top: 4px solid var(--school-maroon);
+}
+
+.card-title {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.value {
+    color: var(--school-maroon);
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.balance {
+    color: var(--school-blue);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* ================= VIRTUAL ACCOUNT ================= */
+
+.account-number {
+    grid-column: 1 / -1;
+
+    background: var(--school-blue);
+    color: white;
+
+    padding: 25px;
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+
+    border-top: 4px solid var(--school-gold);
+}
+
+.account-number span {
+    display: block;
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.account-number strong {
+    display: block;
+    font-size: 30px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.account-number p {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* ================= WALLET STATUS ================= */
+
+.status {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: #e8f7ee;
+    color: var(--success);
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* ================= ACTIONS ================= */
+
+.actions {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+    border-top: 4px solid var(--school-maroon);
+}
+
+.actions h3 {
+    color: var(--school-maroon);
+    margin-bottom: 18px;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn {
+    display: inline-block;
+
+    padding: 11px 18px;
+
+    margin: 4px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: var(--school-maroon);
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: var(--school-maroon-dark);
+}
+
+.btn-primary {
+    background: var(--school-maroon);
+}
+
+.btn-primary:hover {
+    background: var(--school-maroon-dark);
+}
+
+.btn-secondary {
+    background: var(--school-blue);
+}
+
+.btn-secondary:hover {
+    background: var(--school-blue-dark);
+}
+
+/* ================= HISTORY ================= */
+
+.history {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+    border-top: 4px solid var(--school-maroon);
+}
+
+.history h3 {
+    color: var(--school-maroon);
+    margin-bottom: 15px;
+}
+
+/* ================= TABLE ================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th {
+    background: var(--school-maroon);
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 11px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background: #fafafa;
+}
+
+/* ================= TRANSACTION COLORS ================= */
+
+.credit {
+    color: var(--success);
+    font-weight: bold;
+}
+
+.debit {
+    color: var(--danger);
+    font-weight: bold;
+}
+
+.credit-badge {
+    color: var(--success);
+    font-weight: bold;
+}
+
+.debit-badge {
+    color: var(--danger);
+    font-weight: bold;
+}
+
+/* ================= RECEIPT BUTTON ================= */
+
+.receipt-btn {
+    display: inline-block;
+
+    background: var(--school-blue);
+    color: white;
+
+    padding: 7px 11px;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    font-size: 12px;
+}
+
+.receipt-btn:hover {
+    background: var(--school-blue-dark);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: var(--school-maroon);
+    color: white;
+
+    text-align: center;
+
+    padding: 18px;
+
+    margin-top: 35px;
+
+    border-top: 3px solid var(--school-gold);
+
+    font-size: 13px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 800px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        padding: 15px 4%;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .logout {
+        align-self: stretch;
+        text-align: center;
+    }
+
+    .account-number {
+        grid-column: auto;
+    }
+
+    .account-number strong {
+        font-size: 23px;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: 7px 0;
+    }
+
+    .history {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 850px;
+    }
+}
+</style>
+        
+</head>
+
+<body>
+
+<nav class="navbar">
+ <div class="brand">
+                      <h2>Federal Polytechnic Daura</h2>
+                        <p>Students' Wallet System</p>
+    </div>
+
+    <a class="logout" href="/logout/">Logout</a>
+</nav>
+
+
+<main class="container">
+
+    <section class="welcome">
+        <h1>Welcome, {{ student.full_name }}</h1>
+        <p>Student Wallet Dashboard</p>
+    </section>
+
+
+    <section class="cards">
+
+        <div class="card">
+            <div class="card-title">Wallet Balance</div>
+            <div class="balance">₦{{ wallet.balance }}</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Registration Number</div>
+            <div class="value">{{ student.reg_no }}</div>
+        </div>
+        {% if virtual_account %}
+<div class="account-number">
+    <span>Virtual Bank Account</span>
+
+    <strong>
+        {{ virtual_account.account_number }}
+    </strong>
+
+    <p>
+        {{ virtual_account.bank_name }}
+    </p>
+
+    <p>
+        {{ virtual_account.account_name }}
+    </p>
+</div>
+{% endif %}
+        <div class="card">
+    <div class="card-title">
+        Wallet Account Number
+    </div>
+
+    <div class="value">
+        {{ wallet.account_number }}
+    </div>
+
+    <small style="color: #777;">
+        Use this number to fund your wallet from a bank.
+    </small>
+</div>
+
+        <div class="card">
+            <div class="card-title">Wallet Status</div>
+
+            {% if wallet.status %}
+                <span class="status">Active</span>
+            {% else %}
+                <span class="status">Inactive</span>
+            {% endif %}
+        </div>
+
+    </section>
+
+
+    <section class="actions">
+
+    <h3>Wallet Actions</h3>
+
+    <a class="btn btn-primary" href="{% url 'wallet_transaction' %}">
+        Credit / Debit
+    </a>
+    <a class="btn btn-primary" href="{% url 'set_transaction_pin' %}">
+    Set / Change PIN
+</a>
+
+    <a class="btn btn-secondary" href="{% url 'transfer_money' %}">
+        Transfer Money
+    </a>
+    <a class="btn btn-primary" href="{% url 'bank_transfer' %}">
+    Transfer to Bank
+</a>
+<a class="btn btn-primary" href="{% url 'pay_school_fees' %}">
+    Pay School Fees
+</a>
+<a class="btn btn-primary" href="{% url 'pay_sug_fee' %}">
+    Pay SUG Fee
+</a>
+<a href="{% url 'fund_wallet' %}">
+    Fund Wallet
+</a>
+
+</section>
+
+    <section class="history">
+
+        <h3>Transaction History</h3>
+
+        {% if transactions %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Reference</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for item in transactions %}
+
+                <tr>
+                    <td>
+                        {{ item.created_at|date:"d M Y, h:i A" }}
+                    </td>
+
+                    <td>
+                        {{ item.reference }}
+                    </td>
+
+                    <td>
+    {% if item.transaction_type == "credit" %}
+        <span class="transfer-badge credit-badge">
+            CREDIT
+        </span>
+    {% elif item.transaction_type == "debit" %}
+        <span class="transfer-badge debit-badge">
+            DEBIT
+        </span>
+    {% else %}
+        {{ item.get_transaction_type_display }}
+    {% endif %}
+</td>
+
+                    <td>
+    {% if item.transaction_type == "credit" %}
+        <span class="credit">
+            +₦{{ item.amount|floatformat:2 }}
+        </span>
+    {% elif item.transaction_type == "debit" %}
+        <span class="debit">
+            -₦{{ item.amount|floatformat:2 }}
+        </span>
+    {% else %}
+        ₦{{ item.amount|floatformat:2 }}
+    {% endif %}
+</td>
+
+                    <td>
+                        {{ item.description|default:"-" }}
+                    </td>
+
+                    <td>
+    {{ item.status|title }}
+</td>
+
+<td>
+    {% if item.transaction_type == "debit" and item.receiver_wallet %}
+        <a
+            href="{% url 'transfer_receipt' item.reference %}"
+            class="receipt-btn">
+            View Receipt
+        </a>
+    {% elif item.transaction_type == "credit" and item.receiver_wallet %}
+        <a
+            href="{% url 'transfer_receipt' item.reference %}"
+            class="receipt-btn">
+            View Receipt
+        </a>
+    {% else %}
+        -
+    {% endif %}
+</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        {% else %}
+
+        <p class="empty">
+            No transactions found.
+        </p>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+
+<footer>
+   <h2> Federal Polytechnic Daura </h2>
+     Students' Wallet System
+</footer>
+
+</body>
+</html>

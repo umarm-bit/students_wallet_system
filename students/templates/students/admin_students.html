@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management | Federal Polytechnic Daura</title>
+```css
+<style>
+
+:root {
+    --school-maroon: #7A1F2B;
+    --school-maroon-dark: #5E1721;
+    --school-blue: #123B5D;
+    --school-blue-dark: #0D2D46;
+    --school-gold: #C9A227;
+    --school-light: #F5F6F8;
+    --school-white: #FFFFFF;
+    --text-dark: #222222;
+    --text-muted: #6B7280;
+    --success: #198754;
+    --danger: #C0392B;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--school-light);
+    color: var(--text-dark);
+}
+
+/* ================= HEADER ================= */
+
+.navbar {
+    background: var(--school-maroon);
+    color: white;
+
+    padding: 18px 6%;
+
+    border-bottom: 4px solid var(--school-gold);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h2 {
+    font-size: 21px;
+}
+
+.navbar p {
+    font-size: 13px;
+
+    margin-top: 5px;
+
+    opacity: 0.9;
+}
+
+.admin-name {
+    font-size: 14px;
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 94%;
+    max-width: 1300px;
+
+    margin: 35px auto;
+}
+
+/* ================= WELCOME ================= */
+
+.welcome {
+    margin-bottom: 25px;
+}
+
+.welcome h1 {
+    color: var(--school-maroon);
+
+    margin-bottom: 7px;
+
+    font-size: 28px;
+}
+
+.welcome p {
+    color: var(--text-muted);
+
+    font-size: 14px;
+}
+
+/* ================= CARDS ================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+    border-top: 4px solid var(--school-maroon);
+}
+
+.card-title {
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+}
+
+.card-value {
+    color: var(--school-maroon);
+
+    font-size: 28px;
+
+    font-weight: bold;
+}
+
+/* ================= TRANSACTIONS ================= */
+
+.transactions {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+    border-top: 4px solid var(--school-maroon);
+
+    overflow-x: auto;
+}
+
+.transactions h2 {
+    color: var(--school-maroon);
+
+    margin-bottom: 15px;
+}
+
+/* ================= TABLE ================= */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 750px;
+
+    margin-top: 15px;
+}
+
+th,
+td {
+    padding: 13px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #eee;
+
+    font-size: 14px;
+}
+
+th {
+    background: var(--school-maroon);
+
+    color: white;
+
+    font-weight: bold;
+}
+
+tr:hover {
+    background: #fafafa;
+}
+
+/* ================= TRANSACTION COLORS ================= */
+
+.success {
+    color: var(--success);
+
+    font-weight: bold;
+}
+
+.credit {
+    color: var(--success);
+
+    font-weight: bold;
+}
+
+.debit {
+    color: var(--danger);
+
+    font-weight: bold;
+}
+
+/* ================= LINKS ================= */
+
+.links {
+    margin-top: 25px;
+}
+
+.links a {
+    display: inline-block;
+
+    padding: 11px 18px;
+
+    margin: 4px;
+
+    border-radius: 6px;
+
+    background: var(--school-maroon);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.links a:hover {
+    background: var(--school-maroon-dark);
+}
+
+/* SECOND BUTTON */
+
+.links a:nth-child(2),
+.links a:nth-child(3) {
+    background: var(--school-blue);
+}
+
+.links a:nth-child(2):hover,
+.links a:nth-child(3):hover {
+    background: var(--school-blue-dark);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: var(--school-maroon);
+
+    color: white;
+
+    text-align: center;
+
+    padding: 18px;
+
+    margin-top: 35px;
+
+    border-top: 3px solid var(--school-gold);
+
+    font-size: 13px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 800px) {
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar {
+        padding: 15px 4%;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .navbar {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .admin-name {
+        align-self: stretch;
+
+        text-align: center;
+    }
+
+    .transactions {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 750px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    .links a {
+        display: block;
+
+        width: 100%;
+
+        text-align: center;
+
+        margin: 7px 0;
+    }
+}
+
+</style>
+```
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<nav class="navbar">
+
+    <h2>
+        Federal Polytechnic Daura
+    </h2>
+
+    <p>
+        Students' Wallet System — Student Management
+    </p>
+
+</nav>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+
+    <section class="header">
+
+        <h1>
+            Student Management
+        </h1>
+
+        <p>
+            View all registered students and their wallet information.
+        </p>
+
+    </section>
+
+
+    <section class="card">
+
+
+        {% if students %}
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Registration No.
+                    </th>
+
+                    <th>
+                        Full Name
+                    </th>
+
+                    <th>
+                        Email
+                    </th>
+
+                    <th>
+                        Department
+                    </th>
+
+                    <th>
+                        Programme
+                    </th>
+
+                    <th>
+                        Level
+                    </th>
+
+                    <th>
+                        Wallet Balance
+                    </th>
+
+                    <th>
+                        Account Status
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                {% for student in students %}
+
+
+                <tr>
+
+                    <td>
+                        {{ student.reg_no }}
+                    </td>
+
+                    <td>
+                        {{ student.full_name }}
+                    </td>
+
+                    <td>
+                        {{ student.email|default:"-" }}
+                    </td>
+
+                    <td>
+                        {{ student.department|default:"-" }}
+                    </td>
+
+                    <td>
+                        {{ student.programme|default:"-" }}
+                    </td>
+
+                    <td>
+                        {{ student.level|default:"-" }}
+                    </td>
+
+                    <td class="balance">
+
+                        ₦{{ student.wallet.balance|floatformat:2 }}
+
+                    </td>
+
+                    <td>
+
+
+                        {% if student.status %}
+
+
+                            <span class="active">
+                                Active
+                            </span>
+
+
+                        {% else %}
+
+
+                            <span class="inactive">
+                                Inactive
+                            </span>
+
+
+                        {% endif %}
+
+
+                    </td>
+
+                </tr>
+
+
+                {% endfor %}
+
+
+            </tbody>
+
+        </table>
+
+
+        {% else %}
+
+
+            <div class="empty">
+
+                No students found.
+
+            </div>
+
+
+        {% endif %}
+
+
+        <!-- BACK -->
+
+        <a
+            href="{% url 'admin_dashboard' %}"
+            class="back">
+
+            ← Back to Admin Dashboard
+
+        </a>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    Federal Polytechnic Daura — Students' Wallet System
+
+</footer>
+
+
+</body>
+</html>
+```

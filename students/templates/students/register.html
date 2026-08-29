@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration - Federal Polytechnic Daura</title>
+<style>
+:root {
+    --school-maroon: #7A1F2B;
+    --school-maroon-dark: #5E1721;
+    --school-blue: #123B5D;
+    --school-blue-dark: #0D2D46;
+    --school-gold: #C9A227;
+    --school-light: #F5F6F8;
+    --school-white: #FFFFFF;
+    --text-dark: #222222;
+    --text-muted: #6B7280;
+    --danger: #C0392B;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--school-light);
+    margin: 0;
+    padding: 40px 15px;
+    color: var(--text-dark);
+}
+
+/* CONTAINER */
+
+.container {
+    max-width: 600px;
+    margin: auto;
+}
+
+/* CARD */
+
+.card {
+    background: var(--school-white);
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+
+    border-top: 5px solid var(--school-maroon);
+}
+
+/* HEADINGS */
+
+h1,
+h2 {
+    text-align: center;
+}
+
+h1 {
+    color: var(--school-maroon);
+    margin-bottom: 8px;
+}
+
+h2 {
+    color: var(--school-blue);
+    margin-bottom: 22px;
+}
+
+/* LABELS */
+
+label {
+    display: block;
+
+    font-weight: bold;
+
+    color: #444;
+
+    margin-bottom: 6px;
+}
+
+/* INPUTS */
+
+input,
+select {
+    width: 100%;
+
+    padding: 11px;
+
+    margin: 7px 0 15px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--school-maroon);
+
+    box-shadow:
+        0 0 0 2px rgba(122,31,43,.10);
+}
+
+/* SUBMIT BUTTON */
+
+button {
+    width: 100%;
+
+    padding: 12px;
+
+    background: var(--school-maroon);
+
+    color: white;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    background: var(--school-maroon-dark);
+}
+
+/* ERROR */
+
+.error {
+    background: #ffe5e5;
+
+    color: var(--danger);
+
+    padding: 10px;
+
+    border-radius: 6px;
+
+    margin-bottom: 15px;
+
+    font-size: 14px;
+}
+
+/* LOGIN LINK */
+
+.login-link {
+    text-align: center;
+
+    margin-top: 20px;
+
+    padding-top: 18px;
+
+    border-top: 2px solid #eee;
+
+    color: var(--text-muted);
+}
+
+a {
+    color: var(--school-blue);
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+a:hover {
+    color: var(--school-maroon);
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 25px 12px;
+    }
+
+    .card {
+        padding: 22px 18px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Federal Polytechnic Daura</h1>
+        <h2>Student Registration</h2>
+
+        {% if form.errors %}
+            <div class="error">
+                <strong>Please correct the following errors:</strong>
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">
+                Create Student Wallet
+            </button>
+        </form>
+
+        <div class="login-link">
+            Already have an account?
+            <a href="{% url 'student_login' %}">
+                Login here
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

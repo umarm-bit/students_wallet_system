@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Transfer Money</title>
+<style>
+:root {
+    --school-maroon: #7A1F2B;
+    --school-maroon-dark: #5E1721;
+    --school-blue: #123B5D;
+    --school-blue-dark: #0D2D46;
+    --school-gold: #C9A227;
+    --school-light: #F5F6F8;
+    --school-white: #FFFFFF;
+    --text-dark: #222222;
+    --text-muted: #6B7280;
+    --danger: #C0392B;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--school-light);
+    color: var(--text-dark);
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background: var(--school-maroon);
+    color: white;
+
+    padding: 18px 6%;
+
+    border-bottom: 4px solid var(--school-gold);
+}
+
+.navbar h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar p {
+    font-size: 13px;
+    margin-top: 4px;
+    opacity: 0.9;
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 90%;
+    max-width: 500px;
+
+    margin: 50px auto;
+}
+
+/* ================= CARD ================= */
+
+.card {
+    background: var(--school-white);
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+    border-top: 5px solid var(--school-maroon);
+}
+
+/* ================= TITLE ================= */
+
+h1 {
+    color: var(--school-maroon);
+
+    margin-bottom: 10px;
+}
+
+/* ================= DESCRIPTION ================= */
+
+.description {
+    color: var(--text-muted);
+
+    margin-bottom: 25px;
+
+    line-height: 1.5;
+}
+
+/* ================= MESSAGE ================= */
+
+.message {
+    padding: 12px;
+
+    margin-bottom: 15px;
+
+    border-radius: 6px;
+
+    background: #fdecec;
+
+    color: var(--danger);
+
+    font-size: 14px;
+}
+
+/* ================= LABEL ================= */
+
+label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: bold;
+
+    color: #444;
+}
+
+/* ================= INPUT / TEXTAREA ================= */
+
+input,
+textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    margin-bottom: 18px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--school-maroon);
+
+    box-shadow:
+        0 0 0 2px rgba(122, 31, 43, 0.10);
+}
+
+textarea {
+    min-height: 100px;
+
+    resize: vertical;
+
+    font-family: Arial, sans-serif;
+
+    line-height: 1.5;
+}
+
+/* ================= PIN ================= */
+
+#pin {
+    font-size: 18px;
+
+    letter-spacing: 5px;
+
+    text-align: center;
+}
+
+/* ================= BUTTON ================= */
+
+button {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: var(--school-maroon);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    background: var(--school-maroon-dark);
+}
+
+/* ================= BACK ================= */
+
+.back {
+    display: block;
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    color: var(--school-blue);
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.back:hover {
+    color: var(--school-maroon);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 94%;
+
+        margin: 30px auto;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    textarea {
+        min-height: 90px;
+    }
+}
+</style>
+    
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>Transfer Money</h2>
+
+        <div class="balance">
+            <span>Available Balance</span>
+            <strong>₦{{ wallet.balance|floatformat:2 }}</strong>
+        </div>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="recipient_reg_no">
+                Recipient Registration Number
+            </label>
+
+            <input
+                type="text"
+                id="recipient_reg_no"
+                name="recipient_reg_no"
+                placeholder="Enter student's Reg. No."
+                required
+            >
+
+            <label for="amount">
+                Amount
+            </label>
+            
+
+            <input
+                type="number"
+                id="amount"
+                name="amount"
+                placeholder="Enter amount"
+                min="1"
+                step="0.01"
+                required
+            >
+            <label for="pin">Transaction PIN</label>
+
+<input
+    type="password"
+    id="pin"
+    name="pin"
+    maxlength="4"
+    minlength="4"
+    pattern="[0-9]{4}"
+    inputmode="numeric"
+    placeholder="Enter 4-digit PIN"
+    required
+>
+
+            <button type="submit">
+                Transfer Money
+            </button>
+        </form>
+
+        <a href="{% url 'student_dashboard' %}" class="back">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

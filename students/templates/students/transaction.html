@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wallet Transaction | Federal Polytechnic Daura</title>
+<style>
+:root {
+    --school-maroon: #7A1F2B;
+    --school-maroon-dark: #5E1721;
+    --school-blue: #123B5D;
+    --school-blue-dark: #0D2D46;
+    --school-gold: #C9A227;
+    --school-light: #F5F6F8;
+    --school-white: #FFFFFF;
+    --text-dark: #222222;
+    --text-muted: #6B7280;
+    --success: #198754;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--school-light);
+    color: var(--text-dark);
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background: var(--school-maroon);
+    color: white;
+    padding: 18px 6%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 4px solid var(--school-gold);
+}
+
+.brand h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.brand p {
+    font-size: 13px;
+    margin-top: 4px;
+    opacity: 0.9;
+}
+
+/* ================= BACK BUTTON ================= */
+
+.back {
+    color: white;
+    text-decoration: none;
+
+    background: var(--school-blue);
+
+    padding: 9px 16px;
+
+    border-radius: 6px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.back:hover {
+    background: var(--school-blue-dark);
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 90%;
+    max-width: 700px;
+
+    margin: 40px auto;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: var(--school-maroon);
+}
+
+.header p {
+    color: var(--text-muted);
+}
+
+/* ================= BALANCE CARD ================= */
+
+.balance-card {
+    background: var(--school-blue);
+
+    color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+    margin-bottom: 25px;
+
+    border-left: 5px solid var(--school-gold);
+}
+
+.balance-title {
+    color: white;
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+
+    opacity: 0.9;
+}
+
+.balance {
+    font-size: 32px;
+
+    font-weight: bold;
+
+    color: white;
+}
+
+/* ================= FORM CARD ================= */
+
+.form-card {
+    background: var(--school-white);
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+    border-top: 5px solid var(--school-maroon);
+}
+
+/* ================= FORM ================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    color: #444;
+}
+
+input,
+select {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--school-maroon);
+
+    box-shadow:
+        0 0 0 2px rgba(122, 31, 43, 0.10);
+}
+
+/* ================= SUBMIT BUTTON ================= */
+
+.submit-btn {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: var(--school-maroon);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.submit-btn:hover {
+    background: var(--school-maroon-dark);
+}
+
+/* ================= MESSAGES ================= */
+
+.messages {
+    margin-bottom: 20px;
+}
+
+.message {
+    padding: 12px;
+
+    border-radius: 6px;
+
+    margin-bottom: 10px;
+
+    background: #fff3cd;
+
+    color: #664d03;
+
+    border-left: 4px solid var(--school-gold);
+}
+
+/* ================= INFO ================= */
+
+.info {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background: #f0f4f8;
+
+    border-left: 4px solid var(--school-blue);
+
+    border-radius: 6px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+
+    padding: 25px;
+
+    margin-top: 30px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 15px 4%;
+    }
+
+    .brand h2 {
+        font-size: 17px;
+    }
+
+    .brand p {
+        font-size: 12px;
+    }
+
+    .back {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .container {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .balance-card {
+        padding: 20px;
+    }
+
+    .balance {
+        font-size: 27px;
+    }
+
+    .form-card {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="brand">
+        <h2>Federal Polytechnic Daura</h2>
+        <p>Students' Wallet System</p>
+    </div>
+
+    <a class="back" href="/dashboard/">
+        Dashboard
+    </a>
+
+</nav>
+
+
+<main class="container">
+
+    <section class="header">
+        <h1>Wallet Transaction</h1>
+        <p>Manage your student wallet transaction.</p>
+    </section>
+
+
+    <section class="balance-card">
+
+        <div class="balance-title">
+            Current Wallet Balance
+        </div>
+
+        <div class="balance">
+            ₦{{ wallet.balance }}
+        </div>
+
+    </section>
+
+
+    <section class="form-card">
+
+        {% if messages %}
+
+        <div class="messages">
+
+            {% for message in messages %}
+
+            <div class="message">
+                {{ message }}
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+
+        <form method="post">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label for="transaction_type">
+                    Transaction Type
+                </label>
+
+                <select
+                    id="transaction_type"
+                    name="transaction_type"
+                    required
+                >
+
+                    <option value="">
+                        -- Select Transaction Type --
+                    </option>
+
+                    <option value="credit">
+                        Credit
+                    </option>
+
+                    <option value="debit">
+                        Debit
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="amount">
+                    Amount (₦)
+                </label>
+
+                <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="Enter amount"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="description">
+                    Description
+                </label>
+
+                <input
+                    type="text"
+                    id="description"
+                    name="description"
+                    placeholder="e.g. Wallet funding"
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Submit Transaction
+            </button>
+
+        </form>
+
+
+        <div class="info">
+            <strong>Note:</strong>
+            Debit transactions cannot exceed your current wallet balance.
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    Federal Polytechnic Daura — Students' Wallet System
+</footer>
+
+</body>
+</html>

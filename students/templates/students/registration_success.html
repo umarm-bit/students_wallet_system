@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Successful | Federal Polytechnic Daura</title>
+
+    <style>
+
+        :root {
+            --school-maroon: #7A1F2B;
+            --school-maroon-dark: #5E1721;
+            --school-blue: #123B5D;
+            --school-blue-dark: #0D2D46;
+            --school-gold: #C9A227;
+            --school-light: #F5F6F8;
+            --school-white: #FFFFFF;
+            --text-dark: #222222;
+            --text-muted: #6B7280;
+            --success: #198754;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--school-light);
+
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* SCHOOL HEADER */
+
+        .school-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .school-header h1 {
+            color: var(--school-maroon);
+            font-size: 26px;
+            margin-bottom: 6px;
+        }
+
+        .school-header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* CARD */
+
+        .success-card {
+            background: var(--school-white);
+
+            padding: 35px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            box-shadow:
+                0 4px 18px rgba(0, 0, 0, 0.08);
+
+            border-top: 5px solid var(--school-maroon);
+        }
+
+        /* SUCCESS ICON */
+
+        .success-icon {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            background: #e8f7ee;
+
+            color: var(--success);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+        /* TITLE */
+
+        .success-card h2 {
+            color: var(--school-maroon);
+
+            margin-bottom: 15px;
+
+            font-size: 25px;
+        }
+
+        /* TEXT */
+
+        .success-card p {
+            color: var(--text-muted);
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            margin-bottom: 12px;
+        }
+
+        /* BALANCE */
+
+        .balance {
+            background: #f0f4f8;
+
+            border-left: 4px solid var(--school-blue);
+
+            padding: 15px;
+
+            margin: 20px 0;
+
+            border-radius: 6px;
+        }
+
+        .balance strong {
+            display: block;
+
+            color: var(--school-blue);
+
+            font-size: 20px;
+
+            margin-top: 5px;
+        }
+
+        /* BUTTONS */
+
+        .register-btn,
+        .login-btn {
+            display: block;
+
+            width: 100%;
+
+            padding: 12px 20px;
+
+            border-radius: 6px;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+
+            transition: 0.2s;
+        }
+
+        /* REGISTER */
+
+        .register-btn {
+            background: var(--school-maroon);
+
+            color: white;
+        }
+
+        .register-btn:hover {
+            background: var(--school-maroon-dark);
+        }
+
+        /* LOGIN */
+
+        .login-btn {
+            background: var(--school-blue);
+
+            color: white;
+        }
+
+        .login-btn:hover {
+            background: var(--school-blue-dark);
+        }
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+
+            color: #888;
+
+            font-size: 12px;
+
+            margin-top: 20px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .success-card {
+                padding: 25px 20px;
+            }
+
+            .school-header h1 {
+                font-size: 22px;
+            }
+
+            .success-card h2 {
+                font-size: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="school-header">
+
+        <h1>
+            Federal Polytechnic Daura
+        </h1>
+
+        <p>
+            Students' Wallet System
+        </p>
+
+    </div>
+
+
+    <div class="success-card">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Registration Successful
+        </h2>
+
+        <p>
+            Your student account and wallet have been
+            created successfully.
+        </p>
+
+        <div class="balance">
+
+            <span>
+                Initial Wallet Balance
+            </span>
+
+            <strong>
+                ₦0.00
+            </strong>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <a
+            href="{% url 'student_login' %}"
+            class="login-btn">
+
+            Login to Your Account
+
+        </a>
+
+
+        <!-- REGISTER ANOTHER -->
+
+        <a
+            href="{% url 'register_student' %}"
+            class="register-btn">
+
+            Register Another Student
+
+        </a>
+
+    </div>
+
+
+    <div class="footer">
+
+        Federal Polytechnic Daura —
+        Students' Wallet System
+
+    </div>
+
+</div>
+
+</body>
+</html>

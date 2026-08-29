@@ -1,0 +1,849 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Transfer to Bank | Federal Polytechnic Daura</title>
+
+    <style>
+        :root {
+            --school-maroon: #7A1F2B;
+            --school-maroon-dark: #5E1721;
+            --school-blue: #123B5D;
+            --school-blue-dark: #0D2D46;
+            --school-gold: #C9A227;
+            --school-light: #F5F6F8;
+            --school-white: #FFFFFF;
+            --text-dark: #222222;
+            --text-muted: #6B7280;
+            --success: #198754;
+            --danger: #C0392B;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--school-light);
+            color: var(--text-dark);
+        }
+
+        /* ================= HEADER ================= */
+
+        .navbar {
+            background: var(--school-maroon);
+            color: white;
+            padding: 18px 6%;
+            border-bottom: 4px solid var(--school-gold);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            font-size: 21px;
+        }
+
+        .navbar p {
+            font-size: 13px;
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 35px auto;
+        }
+
+        /* ================= TRANSFER CARD ================= */
+
+        .transfer-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+            border-top: 4px solid var(--school-maroon);
+        }
+
+        .transfer-card h1 {
+            color: var(--school-maroon);
+            margin-bottom: 6px;
+        }
+
+        .description {
+            color: var(--text-muted);
+            margin-bottom: 22px;
+            font-size: 14px;
+        }
+
+        /* ================= BALANCE ================= */
+
+        .balance {
+            background: var(--school-blue);
+            color: white;
+
+            padding: 22px;
+            border-radius: 10px;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+
+            border-top: 4px solid var(--school-gold);
+
+            margin-bottom: 25px;
+        }
+
+        .balance span {
+            display: block;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .balance strong {
+            display: block;
+            font-size: 28px;
+        }
+
+        /* ================= MESSAGES ================= */
+
+        .message {
+            padding: 12px 14px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+
+            background: #fdecec;
+            color: var(--danger);
+
+            font-size: 14px;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-section {
+            margin-top: 10px;
+        }
+
+        label {
+            display: block;
+            color: var(--text-dark);
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input,
+        select {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+            border-radius: 6px;
+
+            margin-bottom: 18px;
+
+            font-size: 15px;
+            background: white;
+            color: var(--text-dark);
+
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--school-blue);
+        }
+
+        input[readonly] {
+            background: #f1f1f1;
+        }
+
+        input:disabled,
+        select:disabled {
+            background: #f1f1f1;
+            cursor: not-allowed;
+        }
+
+        /* ================= VERIFY BUTTON ================= */
+
+        .verify-btn {
+            display: inline-block;
+
+            padding: 11px 18px;
+
+            width: 100%;
+
+            margin: 0 0 18px;
+
+            border: none;
+            border-radius: 6px;
+
+            background: var(--school-blue);
+            color: white;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .verify-btn:hover {
+            background: var(--school-blue-dark);
+        }
+
+        .verify-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        /* ================= ACCOUNT STATUS ================= */
+
+        .account-status {
+            display: none;
+
+            padding: 11px 13px;
+
+            margin-top: -5px;
+            margin-bottom: 18px;
+
+            border-radius: 6px;
+
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .account-success {
+            background: #e8f7ee;
+            color: var(--success);
+        }
+
+        .account-error {
+            background: #fdecec;
+            color: var(--danger);
+        }
+
+        /* ================= PIN ================= */
+
+        .pin {
+            letter-spacing: 6px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* ================= TRANSFER BUTTON ================= */
+
+        .transfer-btn {
+            display: inline-block;
+
+            width: 100%;
+
+            padding: 12px 18px;
+
+            margin-top: 3px;
+
+            border: none;
+            border-radius: 6px;
+
+            background: var(--school-maroon);
+            color: white;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .transfer-btn:hover {
+            background: var(--school-maroon-dark);
+        }
+
+        .transfer-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        /* ================= BACK BUTTON ================= */
+
+        .back {
+            display: block;
+
+            width: 100%;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            padding: 11px 18px;
+
+            border-radius: 6px;
+
+            background: var(--school-blue);
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+        .back:hover {
+            background: var(--school-blue-dark);
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: var(--school-maroon);
+            color: white;
+
+            text-align: center;
+
+            padding: 18px;
+
+            margin-top: 35px;
+
+            border-top: 3px solid var(--school-gold);
+
+            font-size: 13px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                padding: 15px 4%;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+            .transfer-card {
+                padding: 22px;
+            }
+
+            .balance strong {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div>
+        <h2>Federal Polytechnic Daura</h2>
+
+        <p>
+            Students' Wallet System
+        </p>
+    </div>
+
+</nav>
+
+
+<main class="container">
+
+    <div class="transfer-card">
+
+        <h1>Transfer to Bank</h1>
+
+        <p class="description">
+            Transfer money securely from your wallet to a bank account.
+        </p>
+
+
+        <!-- WALLET BALANCE -->
+
+        <div class="balance">
+
+            <span>
+                Available Wallet Balance
+            </span>
+
+            <strong>
+                ₦{{ wallet.balance|floatformat:2 }}
+            </strong>
+
+        </div>
+
+
+        <!-- DJANGO MESSAGES -->
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+
+        <!-- TRANSFER FORM -->
+
+        <div class="form-section">
+
+            <form method="post" id="bankTransferForm">
+
+                {% csrf_token %}
+
+
+                <!-- BANK -->
+
+                <label for="bank_name">
+                    Bank Name
+                </label>
+
+                <select
+                    id="bank_name"
+                    name="bank_name"
+                    required
+                >
+
+                    <option value="">
+                        Loading banks...
+                    </option>
+
+                </select>
+
+
+                <input
+                    type="hidden"
+                    id="bank_code"
+                    name="bank_code"
+                >
+
+
+                <!-- ACCOUNT NUMBER -->
+
+                <label for="account_number">
+                    Bank Account Number
+                </label>
+
+                <input
+                    type="text"
+                    id="account_number"
+                    name="account_number"
+                    maxlength="10"
+                    minlength="10"
+                    inputmode="numeric"
+                    placeholder="Enter 10-digit account number"
+                    required
+                >
+
+
+                <!-- VERIFY ACCOUNT -->
+
+                <button
+                    type="button"
+                    class="verify-btn"
+                    id="verifyBtn"
+                >
+                    Verify Account
+                </button>
+
+
+                <!-- ACCOUNT STATUS -->
+
+                <div
+                    id="accountStatus"
+                    class="account-status">
+                </div>
+
+
+                <!-- ACCOUNT NAME -->
+
+                <label for="account_name">
+                    Verified Account Name
+                </label>
+
+                <input
+                    type="text"
+                    id="account_name"
+                    name="account_name"
+                    placeholder="Account name will appear here"
+                    readonly
+                    required
+                >
+
+
+                <!-- AMOUNT -->
+
+                <label for="amount">
+                    Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    min="1"
+                    step="0.01"
+                    placeholder="Enter amount"
+                    required
+                >
+
+
+                <!-- PIN -->
+
+                <label for="pin">
+                    Transaction PIN
+                </label>
+
+                <input
+                    type="password"
+                    id="pin"
+                    name="pin"
+                    maxlength="4"
+                    minlength="4"
+                    pattern="[0-9]{4}"
+                    inputmode="numeric"
+                    placeholder="••••"
+                    class="pin"
+                    required
+                >
+
+
+                <!-- TRANSFER -->
+
+                <button
+                    type="submit"
+                    class="transfer-btn"
+                    id="transferBtn"
+                    disabled
+                >
+                    Transfer to Bank
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <a
+            class="back"
+            href="{% url 'student_dashboard' %}">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    Federal Polytechnic Daura
+    <br>
+
+    Students' Wallet System
+
+</footer>
+
+
+<script>
+
+const bankSelect =
+    document.getElementById("bank_name");
+
+const bankCodeInput =
+    document.getElementById("bank_code");
+
+const accountNumber =
+    document.getElementById("account_number");
+
+const accountName =
+    document.getElementById("account_name");
+
+const verifyBtn =
+    document.getElementById("verifyBtn");
+
+const transferBtn =
+    document.getElementById("transferBtn");
+
+const accountStatus =
+    document.getElementById("accountStatus");
+
+
+// -------------------------------------
+// LOAD BANKS
+// -------------------------------------
+
+fetch("{% url 'get_banks' %}")
+
+    .then(response =>
+        response.json()
+    )
+
+    .then(data => {
+
+        bankSelect.innerHTML =
+            '<option value="">Select Bank</option>';
+
+        if (!data.success) {
+
+            bankSelect.innerHTML =
+                '<option value="">Unable to load banks</option>';
+
+            return;
+        }
+
+        data.banks.forEach(bank => {
+
+            const option =
+                document.createElement("option");
+
+            option.value =
+                bank.name;
+
+            option.textContent =
+                bank.name;
+
+            option.dataset.code =
+                bank.code;
+
+            bankSelect.appendChild(option);
+
+        });
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        bankSelect.innerHTML =
+            '<option value="">Unable to load banks</option>';
+
+    });
+
+
+// -------------------------------------
+// SELECT BANK
+// -------------------------------------
+
+bankSelect.addEventListener(
+    "change",
+    function () {
+
+        const selected =
+            this.options[this.selectedIndex];
+
+        bankCodeInput.value =
+            selected.dataset.code || "";
+
+        accountName.value = "";
+
+        transferBtn.disabled = true;
+
+        accountStatus.style.display = "none";
+
+    }
+);
+
+
+// -------------------------------------
+// VERIFY ACCOUNT
+// -------------------------------------
+
+verifyBtn.addEventListener(
+    "click",
+    function () {
+
+        const bankCode =
+            bankCodeInput.value;
+
+        const number =
+            accountNumber.value.trim();
+
+        accountName.value = "";
+
+        transferBtn.disabled = true;
+
+        accountStatus.style.display = "none";
+
+
+        if (!bankCode) {
+
+            showError(
+                "Please select a bank first."
+            );
+
+            return;
+        }
+
+
+        if (!/^\d{10}$/.test(number)) {
+
+            showError(
+                "Please enter a valid 10-digit account number."
+            );
+
+            return;
+        }
+
+
+        verifyBtn.disabled = true;
+
+        verifyBtn.textContent =
+            "Verifying...";
+
+
+        const url =
+            "{% url 'resolve_bank_account' %}"
+            + "?account_number="
+            + encodeURIComponent(number)
+            + "&bank_code="
+            + encodeURIComponent(bankCode);
+
+
+        fetch(url)
+
+            .then(response =>
+                response.json()
+            )
+
+            .then(data => {
+
+                if (!data.success) {
+
+                    showError(
+                        data.message ||
+                        "Account verification failed."
+                    );
+
+                    return;
+                }
+
+
+                accountName.value =
+                    data.account_name || "";
+
+
+                if (data.account_name) {
+
+                    showSuccess(
+                        "Account verified successfully."
+                    );
+
+                    transferBtn.disabled =
+                        false;
+
+                } else {
+
+                    showError(
+                        "Account name was not returned."
+                    );
+
+                }
+
+            })
+
+            .catch(error => {
+
+                console.error(error);
+
+                showError(
+                    "Unable to verify account."
+                );
+
+            })
+
+            .finally(() => {
+
+                verifyBtn.disabled = false;
+
+                verifyBtn.textContent =
+                    "Verify Account";
+
+            });
+
+    }
+);
+
+
+// -------------------------------------
+// RESET VERIFICATION
+// -------------------------------------
+
+accountNumber.addEventListener(
+    "input",
+    function () {
+
+        accountName.value = "";
+
+        transferBtn.disabled = true;
+
+        accountStatus.style.display = "none";
+
+    }
+);
+
+
+// -------------------------------------
+// SUCCESS MESSAGE
+// -------------------------------------
+
+function showSuccess(message) {
+
+    accountStatus.textContent =
+        "✓ " + message;
+
+    accountStatus.className =
+        "account-status account-success";
+
+    accountStatus.style.display =
+        "block";
+}
+
+
+// -------------------------------------
+// ERROR MESSAGE
+// -------------------------------------
+
+function showError(message) {
+
+    accountStatus.textContent =
+        message;
+
+    accountStatus.className =
+        "account-status account-error";
+
+    accountStatus.style.display =
+        "block";
+}
+
+</script>
+
+</body>
+</html>
+```

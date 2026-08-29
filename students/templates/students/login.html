@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Login | Federal Polytechnic Daura</title>
+<style>
+:root {
+    --school-maroon: #7A1F2B;
+    --school-maroon-dark: #5E1721;
+    --school-blue: #123B5D;
+    --school-blue-dark: #0D2D46;
+    --school-gold: #C9A227;
+    --school-light: #F5F6F8;
+    --school-white: #FFFFFF;
+    --text-dark: #222222;
+    --text-muted: #6B7280;
+    --danger: #C0392B;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--school-light);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* LOGIN CONTAINER */
+
+.login-container {
+    width: 100%;
+    max-width: 430px;
+}
+
+/* SCHOOL HEADER */
+
+.school-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.school-header h1 {
+    color: var(--school-maroon);
+    font-size: 25px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.school-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* LOGIN CARD */
+
+.login-card {
+    background: var(--school-white);
+    padding: 35px;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+
+    border-top: 5px solid var(--school-maroon);
+}
+
+/* LOGIN TITLE */
+
+.login-card h2 {
+    color: var(--school-maroon);
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* MESSAGE */
+
+.message {
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+
+    background: #fdecec;
+    color: var(--danger);
+
+    font-size: 14px;
+}
+
+/* FORM */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+
+    font-weight: bold;
+    color: #444;
+
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 13px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 15px;
+    outline: none;
+
+    transition: 0.2s;
+}
+
+input:focus {
+    border-color: var(--school-maroon);
+
+    box-shadow:
+        0 0 0 2px rgba(122, 31, 43, 0.10);
+}
+
+/* LOGIN BUTTON */
+
+.login-btn {
+    width: 100%;
+    padding: 13px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: var(--school-maroon);
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    margin-top: 5px;
+
+    transition: 0.2s;
+}
+
+.login-btn:hover {
+    background: var(--school-maroon-dark);
+}
+
+/* REGISTER SECTION */
+
+.register-section {
+    text-align: center;
+
+    margin-top: 22px;
+    padding-top: 20px;
+
+    border-top: 2px solid #eee;
+}
+
+.register-section p {
+    color: var(--text-muted);
+
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* REGISTER BUTTON */
+
+.register-btn {
+    display: inline-block;
+
+    color: var(--school-blue);
+
+    border: 1px solid var(--school-blue);
+
+    padding: 9px 16px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.register-btn:hover {
+    background: var(--school-blue);
+    color: white;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+
+    color: #888;
+
+    font-size: 12px;
+
+    margin-top: 18px;
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .login-card {
+        padding: 25px 20px;
+    }
+
+    .school-header h1 {
+        font-size: 21px;
+    }
+
+    .login-btn {
+        padding: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="school-header">
+        <h1>Federal Polytechnic Daura</h1>
+        <p>Students' Wallet System</p>
+    </div>
+
+    <div class="login-card">
+
+        <h2>Student Login</h2>
+
+        <p class="subtitle">
+            Login to access your wallet
+        </p>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="reg_no">
+                    Registration Number
+                </label>
+
+                <input
+                    type="text"
+                    id="reg_no"
+                    name="reg_no"
+                    placeholder="Enter Registration Number"
+                    required
+                    autocomplete="username"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    required
+                    autocomplete="current-password"
+                >
+            </div>
+
+            <button
+                type="submit"
+                class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div class="register-section">
+
+            <p>
+                Don't have a student wallet?
+            </p>
+
+            <a
+                class="register-btn"
+                href="{% url 'register_student' %}">
+                Create Student Wallet
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Federal Polytechnic Daura — Students' Wallet System
+    </div>
+
+</div>
+
+</body>
+</html>

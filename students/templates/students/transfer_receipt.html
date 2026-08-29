@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Transfer Receipt | Federal Polytechnic Daura</title>
+<style>
+:root {
+    --school-maroon: #7A1F2B;
+    --school-maroon-dark: #5E1721;
+    --school-blue: #123B5D;
+    --school-blue-dark: #0D2D46;
+    --school-gold: #C9A227;
+    --school-light: #F5F6F8;
+    --school-white: #FFFFFF;
+    --text-dark: #222222;
+    --text-muted: #6B7280;
+    --success: #198754;
+    --whatsapp: #25D366;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px 15px;
+
+    font-family: Arial, sans-serif;
+
+    background: var(--school-light);
+
+    color: var(--text-dark);
+}
+
+/* ================= RECEIPT ================= */
+
+.receipt {
+    width: 100%;
+    max-width: 650px;
+
+    margin: auto;
+
+    background: var(--school-white);
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+    overflow: hidden;
+
+    border-top: 5px solid var(--school-maroon);
+}
+
+/* ================= HEADER ================= */
+
+.header {
+    background: var(--school-maroon);
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px;
+
+    border-bottom: 4px solid var(--school-gold);
+}
+
+.header h1 {
+    margin: 0;
+
+    font-size: 22px;
+
+    font-weight: bold;
+}
+
+.header p {
+    margin: 7px 0 0;
+
+    font-size: 14px;
+
+    opacity: 0.9;
+}
+
+/* ================= SUCCESS ================= */
+
+.success {
+    text-align: center;
+
+    padding: 20px;
+
+    color: var(--success);
+
+    font-weight: bold;
+
+    font-size: 18px;
+
+    background: #f7fbf8;
+}
+
+/* ================= DETAILS ================= */
+
+.details {
+    padding: 10px 30px 30px;
+}
+
+.row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.label {
+    color: var(--text-muted);
+
+    font-size: 14px;
+}
+
+.value {
+    font-weight: bold;
+
+    text-align: right;
+
+    color: var(--text-dark);
+}
+
+/* ================= AMOUNT ================= */
+
+.amount {
+    font-size: 28px;
+
+    color: var(--school-maroon);
+}
+
+/* ================= STATUS ================= */
+
+.status {
+    color: var(--success);
+
+    font-weight: bold;
+}
+
+/* ================= BUTTONS ================= */
+
+.buttons {
+    display: flex;
+
+    gap: 10px;
+
+    padding: 0 30px 30px;
+}
+
+.btn {
+    flex: 1;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+/* PRINT */
+
+.print {
+    background: var(--school-blue);
+
+    color: white;
+}
+
+.print:hover {
+    background: var(--school-blue-dark);
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    background: var(--school-maroon);
+
+    color: white;
+}
+
+.dashboard:hover {
+    background: var(--school-maroon-dark);
+}
+
+/* WHATSAPP */
+
+.whatsapp {
+    background: var(--whatsapp);
+
+    color: white;
+}
+
+.whatsapp:hover {
+    opacity: 0.9;
+}
+
+/* ================= PRINT ================= */
+
+@media print {
+
+    body {
+        background: white;
+
+        padding: 0;
+    }
+
+    .receipt {
+        box-shadow: none;
+
+        border-top: none;
+    }
+
+    .buttons {
+        display: none;
+    }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px 10px;
+    }
+
+    .row {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 5px;
+    }
+
+    .value {
+        text-align: left;
+    }
+
+    .amount {
+        font-size: 25px;
+    }
+
+    .details {
+        padding: 10px 20px 25px;
+    }
+
+    .buttons {
+        flex-direction: column;
+
+        padding: 0 20px 25px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="receipt">
+
+    <div class="header">
+        <h1>Federal Polytechnic Daura</h1>
+        <p>Students' Wallet System</p>
+    </div>
+
+    <div class="success">
+        ✓ Transfer Successful
+    </div>
+
+    <div class="details">
+
+        <div class="row">
+            <span class="label">Transaction Reference</span>
+            <span class="value">
+                {{ transaction.reference }}
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="label">Sender</span>
+            <span class="value">
+                {{ transaction.wallet.student.full_name }}
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="label">Sender Reg. No.</span>
+            <span class="value">
+                {{ transaction.wallet.student.reg_no }}
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="label">Receiver</span>
+            <span class="value">
+                {{ transaction.receiver_wallet.student.full_name }}
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="label">Receiver Reg. No.</span>
+            <span class="value">
+                {{ transaction.receiver_wallet.student.reg_no }}
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="label">Amount</span>
+            <span class="value amount">
+                ₦{{ transaction.amount|floatformat:2 }}
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="label">Transaction Type</span>
+            <span class="value">
+                Transfer
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="label">Status</span>
+            <span class="value status">
+                {{ transaction.status|title }}
+            </span>
+        </div>
+
+        <div class="row">
+            <span class="label">Date & Time</span>
+            <span class="value">
+                {{ transaction.created_at|date:"d M Y, h:i A" }}
+            </span>
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+    <button
+        class="btn print"
+        onclick="window.print()">
+        Print Receipt
+    </button>
+
+    <button
+        class="btn whatsapp"
+        onclick="shareReceipt()">
+        Send via WhatsApp
+    </button>
+
+    <a
+        class="btn dashboard"
+        href="{% url 'student_dashboard' %}">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</div>
+<script>
+function shareReceipt() {
+    const receiptText = `
+Federal Polytechnic Daura
+Students' Wallet System
+
+TRANSFER RECEIPT
+
+Reference: {{ transaction.reference }}
+Sender: {{ transaction.wallet.student.full_name }}
+Sender Reg. No.: {{ transaction.wallet.student.reg_no }}
+
+Receiver: {{ transaction.receiver_wallet.student.full_name }}
+Receiver Reg. No.: {{ transaction.receiver_wallet.student.reg_no }}
+
+Amount: ₦{{ transaction.amount|floatformat:2 }}
+Type: Transfer
+Status: {{ transaction.status|title }}
+Date: {{ transaction.created_at|date:"d M Y, h:i A" }}
+
+Thank you for using Students' Wallet System.
+    `;
+
+    const whatsappUrl =
+        "https://wa.me/?text=" + encodeURIComponent(receiptText);
+
+    window.open(whatsappUrl, "_blank");
+}
+</script>
+</body>
+</html>
