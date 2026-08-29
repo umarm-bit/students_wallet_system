@@ -33,6 +33,7 @@ DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
+    "students-wallet-system.onrender.com",
 ]
 
 
